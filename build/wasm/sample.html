@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+
+<script type="module">
+  async function init() {
+    const { instance } = await WebAssembly.instantiateStreaming(
+      fetch(".out/sample.wasm")
+    );
+    console.log(instance.exports.fib(10));
+    window.fib = instance.exports.fib;
+  }
+  init();
+</script>

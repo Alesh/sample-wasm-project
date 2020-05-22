@@ -1,0 +1,12 @@
+rule clang
+    command = clang --target=wasm32 -emit-llvm -c -S -o $out $in
+
+rule llc
+    command = llc -march=wasm32 -filetype=obj -o=$out $in
+
+rule lld
+    command = wasm-ld --no-entry --export-all -o $out $in
+
+build sample.ll: clang ../../../source/sample.c
+build sample.o: llc sample.ll
+build ../sample.wasm: lld sample.o

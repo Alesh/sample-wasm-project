@@ -1,0 +1,8 @@
+.venv
+.idea
+build/*
+!build/wasm
+build/wasm/*
+!build/wasm/build.ninja
+!build/wasm/sample.html
+
